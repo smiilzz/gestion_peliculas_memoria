@@ -12,8 +12,14 @@ import java.util.List;
 @RestController
 public class PeliculasController {
 
-    @Autowired
+    // Eliminamos el @Autowired de aquí para ocupar el Mockito.
     private PeliculasService peliculasService;
+
+    // Generamos el constructor
+    @Autowired
+    public PeliculasController(PeliculasService peliculasService) {
+        this.peliculasService = peliculasService;
+    }
 
     @GetMapping("/peliculas")
     public ResponseEntity<List<Pelicula>> getAll(@RequestParam(required = false) String q) {
